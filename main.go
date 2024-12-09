@@ -1,9 +1,21 @@
 package main
 
 import (
-	"fmt"
+	"html/template"
+	"net/http"
 )
 
 func main() {
-	fmt.Println()
+	http.HandleFunc("/", home)
+}
+func home(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, "home.html")
+}
+func renderTemplate(w http.ResponseWriter, tmpl string) {
+	t, err := template.ParseFiles("templates/" + tmpl)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	t.Execute(w, nil)
+
 }
