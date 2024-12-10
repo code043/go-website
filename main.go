@@ -10,9 +10,9 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 	http.HandleFunc("/", home)
 	http.HandleFunc("/projects", projects)
-	http.HandleFunc("/skills", home)
-	http.HandleFunc("/about", home)
-	http.HandleFunc("/contact", home)
+	http.HandleFunc("/skills", skills)
+	http.HandleFunc("/about", about)
+	http.HandleFunc("/contact", contact)
 
 	// Start
 	err := http.ListenAndServe(":3000", nil)
