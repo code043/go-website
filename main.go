@@ -16,9 +16,12 @@ func main() {
 
 	// Start
 	err := http.ListenAndServe(":3000", nil)
+
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
+
 }
 func home(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "home.html")
